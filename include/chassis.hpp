@@ -12,24 +12,21 @@ class Chassis{
         okapi::Motor midLeft;
         okapi::Motor rearRight;
         okapi::Motor midRight;
-        okapi::Motor ptoRight;
-        okapi::Motor ptoLeft;
+        std::shared_ptr<okapi::ChassisController> remyRaven;
+        std::shared_ptr<okapi::HDriveModel> whatDish;
+        std::shared_ptr<okapi::AsyncMotionProfileController> profile_controller;
         
-        pros::ADIDigitalOut ptoSolenoid;
-
         Chassis();
         void build();//new
-        void moveRaw();
+        void whiskRaw(double pwr, double turn);
         void resetEncoders();
         void stopMove();
         void brakeOn();
         void brakeOff();
-        void ptoT();
-        void ptoF();
 
-        void traverse();
-        void rotate();
-        void pivotOnRight();
+        void traverse(int in);
+        void rotate(int deg);
+        void pivotOnRight(int deg);
 };
 
 extern Chassis chassis;

@@ -10,7 +10,7 @@ void iHungry::takeOut(){
     intakeMtr.moveVoltage(-12000);
 }
 void iHungry::dontEat(){
-    intakeMtr.moveVoltage(-12000);
+    intakeMtr.moveVoltage(0);
 }
 
 iHungry intake = iHungry();

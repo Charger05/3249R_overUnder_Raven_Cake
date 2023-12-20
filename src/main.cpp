@@ -63,20 +63,44 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	pros::Controller master(pros::E_CONTROLLER_MASTER);
-	pros::Motor left_mtr(1);
-	pros::Motor right_mtr(2);
-
 	while (true) {
-		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
-		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
-		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
-		int left = master.get_analog(ANALOG_LEFT_Y);
-		int right = master.get_analog(ANALOG_RIGHT_Y);
+		chassis.whiskRaw(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
+		
+		if(chefR1.isPressed()){
+			intake.takeIn();
+		}
+		else if(chefR2.isPressed()){
+			intake.takeOut();
+		}
+		else{
+			intake.dontEat();
+		}
 
-		left_mtr = left;
-		right_mtr = right;
+		if(chefLeft.isPressed()){
+			if(!cataAdj){
+				cataAdj = true;
+			}
+			else{
+				cataAdj = false;
+				//tare position
+			}
+			while(chefLeft.isPressed()){
+				pros::delay(2);
+			}
+		}
+		if(chefL1.isPressed()){
+			if(!cataAdj){
+				catapult.autoServe();
+			}
+			else if(cataAdj){
+				catapult.manualServe();
+			}
+			
+		}
+		else{
+			catapult.stopIt();
+		}
 
-		pros::delay(20);
 	}
+
 }

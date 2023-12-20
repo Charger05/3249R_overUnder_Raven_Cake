@@ -53,6 +53,7 @@
  * You should add more #includes here
  */
 #include "okapi/api.hpp"
+#include "okapi/api/device/motor/abstractMotor.hpp"
 //#include "pros/api_legacy.h"
 
 #include "auton.hpp"
@@ -63,6 +64,7 @@
 #include "preAuton.hpp"
 #include "variables.hpp"
 #include "wings.hpp"
+#include "pto.hpp"
 
 
 
