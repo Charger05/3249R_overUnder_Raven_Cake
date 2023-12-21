@@ -1,54 +1,11 @@
 #include "main.h"
 
-/**
- * A callback function for LLEMU's center button.
- *
- * When this callback is fired, it will toggle line 2 of the LCD text between
- * "I was pressed!" and nothing.
- */
-void on_center_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "I was pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
-}
-
-/**
- * Runs initialization code. This occurs as soon as the program is started.
- *
- * All other competition modes are blocked by initialize; it is recommended
- * to keep execution time for this mode under a few seconds.
- */
 void initialize() {
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello PROS User!");
-
-	pros::lcd::register_btn1_cb(on_center_button);
+	chassis.build();
+	//spork.create();
 }
-
-/**
- * Runs while the robot is in the disabled state of Field Management System or
- * the VEX Competition Switch, following either autonomous or opcontrol. When
- * the robot is enabled, this task will exit.
- */
-void disabled() {}
-
-/**
- * Runs the user autonomous code. This function will be started in its own task
- * with the default priority and stack size whenever the robot is enabled via
- * the Field Management System or the VEX Competition Switch in the autonomous
- * mode. Alternatively, this function may be called in initialize or opcontrol
- * for non-competition testing purposes.
- *
- * If the robot is disabled or communications is lost, the autonomous task
- * will be stopped. Re-enabling the robot will restart the task, not re-start it
- * from where it left off.
- */
-void autonomous() {}
-
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -64,8 +21,19 @@ void autonomous() {}
  */
 void opcontrol() {
 	while (true) {
+		//Chassis drive
 		chassis.whiskRaw(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
 		
+		//PTO 
+		if(ptoS){
+			spork.driveChassis(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
+		}
+		else{
+			spork.driveLift();
+		}
+		
+		
+		//Intake
 		if(chefR1.isPressed()){
 			intake.takeIn();
 		}
@@ -76,6 +44,7 @@ void opcontrol() {
 			intake.dontEat();
 		}
 
+		//Catapult
 		if(chefLeft.isPressed()){
 			if(!cataAdj){
 				cataAdj = true;
@@ -88,19 +57,66 @@ void opcontrol() {
 				pros::delay(2);
 			}
 		}
+
+		//catapult auto/manual serve
 		if(chefL1.isPressed()){
 			if(!cataAdj){
 				catapult.autoServe();
 			}
-			else if(cataAdj){
+			else{
 				catapult.manualServe();
+			}			
+		}
+		else if(chefL2.isPressed()){
+			if(cataAdj){
+				catapult.goBack();
 			}
-			
 		}
 		else{
 			catapult.stopIt();
 		}
 
+		//Wing
+		if(chefA.isPressed()){
+			if(!wingS){
+				wingS = true;//engaged
+				Wings.fry();
+
+			}
+			else{
+				wingS = false;//disengaged
+				Wings.chill();
+			}
+			while(chefA.isPressed()){
+				pros::delay(2);
+			}
+		}
+		
+		//PTO
+		if(chefX.isPressed()){
+			if(!ptoS){
+				ptoS = true;//chassis
+				spork.ptoT();
+
+			}
+			else{
+				ptoS = false;//lift
+				spork.ptoF();
+			}
+			while(chefX.isPressed()){
+				pros::delay(2);
+			}
+
+		}
+		
+		
+
 	}
 
 }
+/**
+ * Runs while the robot is in the disabled state of Field Management System or
+ * the VEX Competition Switch, following either autonomous or opcontrol. When
+ * the robot is enabled, this task will exit.
+ */
+void disabled() {}

@@ -6,16 +6,25 @@
 #include "okapi/api.hpp"
 using namespace okapi::literals;
 
+#include "variables.hpp"
+
 class instantPot{
     public:
         okapi::Motor ptoRight;
         okapi::Motor ptoLeft;
+        std::shared_ptr<okapi::ChassisController> alfredo;
+        std::shared_ptr<okapi::HDriveModel> helper;
         
         pros::ADIDigitalOut ptoSolenoid;
 
         instantPot();
         void ptoT();
         void ptoF();
+        void driveChassis(double pwr, double turn);
+        //void create();//new
+        void driveLift();
+        void brakeOn();
+        void brakeOff();
 };
 
 extern instantPot spork;

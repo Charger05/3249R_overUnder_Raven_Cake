@@ -24,7 +24,7 @@
  * E_CONTROLLER_MASTER is pedantically correct within the PROS styleguide, but
  * not convenient for most student programmers.
  */
-#define PROS_USE_SIMPLE_NAMES
+//#define PROS_USE_SIMPLE_NAMES
 
 /**
  * If defined, C++ literals will be available for use. All literals are in the
@@ -32,7 +32,7 @@
  *
  * For instance, you can do `4_mtr = 50` to set motor 4's target velocity to 50
  */
-#define PROS_USE_LITERALS
+//#define PROS_USE_LITERALS
 
 #define REAR_LEFT_MOTOR_PORT 1
 #define MID_LEFT_MOTOR_PORT 5
@@ -53,18 +53,18 @@
  * You should add more #includes here
  */
 #include "okapi/api.hpp"
-#include "okapi/api/device/motor/abstractMotor.hpp"
 //#include "pros/api_legacy.h"
 
 #include "auton.hpp"
 #include "catapult.hpp"
 #include "chassis.hpp"
-#include "formAlgor.hpp"
+//#include "formAlgor.hpp"
 #include "intake.hpp"
 #include "preAuton.hpp"
 #include "variables.hpp"
 #include "wings.hpp"
 #include "pto.hpp"
+//#include "init.hpp"
 
 
 
@@ -78,7 +78,7 @@
  */
 // using namespace pros;
 // using namespace pros::literals;
-// using namespace okapi;
+using namespace okapi;
 
 /**
  * Prototypes for the competition control tasks are redefined here to ensure

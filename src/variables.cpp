@@ -1,11 +1,13 @@
 #include "main.h"
 
-double pi = 3.14159265359;
-double circumOmni = 4*pi;
-double circumBot = 2*pi*6;
-double circumTurn = 2*pi*13;
+double nPi = 3.14159265359;
+double circumOmni = 4*nPi;
+double circumBot = 2*nPi*6;
+double circumTurn = 2*nPi*13;
 
 bool cataAdj = false;
+bool ptoS = true;
+bool wingS = false;
 
 okapi::Controller chef(okapi::ControllerId::master);
 okapi::ControllerButton chefA(okapi::ControllerId::master, okapi::ControllerDigital::A);

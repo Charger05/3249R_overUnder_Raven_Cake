@@ -6,6 +6,7 @@ Catapult::Catapult():
 {}
 void Catapult::autoServe()
 {
+    cataMtr.tarePosition();
     cataMtr.moveRelative(900, 200);
     int delay = 0;
     while (!((cataMtr.getPosition() < 905) && (cataMtr.getPosition() > 895)))
@@ -18,8 +19,6 @@ void Catapult::autoServe()
         }
     }
     stopIt();
-    cataMtr.setBrakeMode(brake);
-	cataMtr.tarePosition();
 }
 void Catapult::manualServe()
 {
@@ -33,7 +32,7 @@ void Catapult::goBack()
 void Catapult::stopIt()
 {
     cataMtr.moveVoltage(0);
-    cataMtr.setBrakeMode(brake);
+    cataMtr.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 }
 
 Catapult catapult = Catapult();

@@ -14,16 +14,15 @@ class Chassis{
         okapi::Motor midRight;
         std::shared_ptr<okapi::ChassisController> remyRaven;
         std::shared_ptr<okapi::HDriveModel> whatDish;
-        std::shared_ptr<okapi::AsyncMotionProfileController> profile_controller;
         
         Chassis();
         void build();//new
         void whiskRaw(double pwr, double turn);
         void resetEncoders();
-        void stopMove();
         void brakeOn();
         void brakeOff();
-
+        
+        void stopMove();
         void traverse(int in);
         void rotate(int deg);
         void pivotOnRight(int deg);

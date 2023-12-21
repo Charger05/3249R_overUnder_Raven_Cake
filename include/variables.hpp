@@ -4,12 +4,14 @@
 
 #include "main.h"
 
-extern double pi;//Pi
+extern double nPi;//Pi
 extern double circumOmni;//Circumference of 4” omni wheel
 extern double circumBot;//Circumference of bot
 extern double circumTurn;//Circumference of turning circle
 
 extern bool cataAdj;//Catapult setting
+extern bool ptoS;//PTO setting
+extern bool wingS;
 
 extern okapi::Controller chef;
 extern okapi::ControllerButton chefR1;
