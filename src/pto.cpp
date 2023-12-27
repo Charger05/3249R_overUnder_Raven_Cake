@@ -14,7 +14,7 @@ void instantPot::ptoT(){
 void instantPot::ptoF(){
     ptoSolenoid.set_value(false);//engaged with lift
 }
-/*
+
 void instantPot::create(){
     //resetEncoders();
     alfredo = okapi::ChassisControllerBuilder()
@@ -23,12 +23,14 @@ void instantPot::create(){
     .build();
     helper = std::dynamic_pointer_cast<okapi::HDriveModel>(alfredo -> getModel());
 }
-*/
 
-void instantPot::driveChassis(double pwr, double turn){
+
+void instantPot::driveChassis(float pwr, float turn){
+    /*
     ptoLeft.moveVoltage((pwr + turn)*120);
     ptoRight.moveVoltage((pwr - turn)*120);
-    //alfredo->getModel() -> arcade(pwr, turn, 5);
+    */
+    alfredo -> getModel() -> arcade(pwr, turn);
 }
 void instantPot::brakeOn(){
     ptoLeft.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);

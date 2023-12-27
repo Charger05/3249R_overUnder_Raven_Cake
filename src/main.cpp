@@ -2,9 +2,9 @@
 
 void initialize() {
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
+	pros::lcd::set_text(1, "Program Initalized");
 	chassis.build();
-	//spork.create();
+	spork.create();
 }
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -109,7 +109,7 @@ void opcontrol() {
 
 		}
 		
-		
+		pros::delay(10);
 
 	}
 

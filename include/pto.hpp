@@ -20,8 +20,8 @@ class instantPot{
         instantPot();
         void ptoT();
         void ptoF();
-        void driveChassis(double pwr, double turn);
-        //void create();//new
+        void driveChassis(float pwr, float turn);
+        void create();//new
         void driveLift();
         void brakeOn();
         void brakeOff();

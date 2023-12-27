@@ -10,13 +10,13 @@ Chassis::Chassis():
 void Chassis::build(){
     resetEncoders();
     remyRaven = okapi::ChassisControllerBuilder()
-    .withMotors(rearLeft, midLeft, rearRight, midRight)
-    .withDimensions(okapi::AbstractMotor::gearset::green, {{4_in, 13_in}, okapi::imev5GreenTPR})
+    .withMotors({rearLeft, midLeft}, {rearRight, midRight})
+    .withDimensions(okapi::AbstractMotor::gearset::green, {{4_in, 9_in}, okapi::imev5GreenTPR})
     .build();
     whatDish = std::dynamic_pointer_cast<okapi::HDriveModel>(remyRaven -> getModel());
 }
 void Chassis::whiskRaw(double pwr, double turn){
-    remyRaven->getModel()->arcade(pwr, turn, 5);
+    remyRaven -> getModel()->arcade(pwr, turn);
 }
 void Chassis::resetEncoders(){
     rearLeft.tarePosition();
