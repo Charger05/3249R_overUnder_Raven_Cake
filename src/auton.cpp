@@ -11,5 +11,31 @@
  * from where it left off.
  */
 void autonomous() {
-    
+    if(autonSet == 1){
+        //preload into goal
+        chassis.preloadTriball();
+    }
+    else if(autonSet == 2){
+        //dual triball
+        chassis.dualTriball();
+    }
+    else if(autonSet == 3){
+        //Full WP
+        chassis.fullWP();
+    }
+    else if(autonSet == 4){
+        //Loading zone only
+        chassis.loadingZone();
+    }
+    else if(autonSet == 5){
+        //elevation pole only
+        chassis.elevationPole();
+    }
+    else if(autonSet == 6){
+        //fire preloads then push them
+        chassis.skillsOne();
+    }
+    else{
+        //
+    }
 }

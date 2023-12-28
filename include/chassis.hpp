@@ -26,6 +26,13 @@ class Chassis{
         void traverse(int in);
         void rotate(int deg);
         void pivotOnRight(int deg);
+
+        void preloadTriball();
+        void dualTriball();
+        void fullWP();
+        void loadingZone();
+        void elevationPole();
+        void skillsOne();
 };
 
 extern Chassis chassis;

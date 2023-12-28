@@ -9,6 +9,8 @@ bool cataAdj = false;
 bool ptoS = true;
 bool wingS = false;
 
+int autonSet = 0;
+
 okapi::Controller chef(okapi::ControllerId::master);
 okapi::ControllerButton chefA(okapi::ControllerId::master, okapi::ControllerDigital::A);
 okapi::ControllerButton chefB(okapi::ControllerId::master,okapi::ControllerDigital::B);

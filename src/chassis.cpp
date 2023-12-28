@@ -11,7 +11,7 @@ void Chassis::build(){
     resetEncoders();
     remyRaven = okapi::ChassisControllerBuilder()
     .withMotors({rearLeft, midLeft}, {rearRight, midRight})
-    .withDimensions(okapi::AbstractMotor::gearset::green, {{4_in, 9_in}, okapi::imev5GreenTPR})
+    .withDimensions(okapi::AbstractMotor::gearset::green, {{4_in, 13_in}, okapi::imev5GreenTPR})
     .build();
     whatDish = std::dynamic_pointer_cast<okapi::HDriveModel>(remyRaven -> getModel());
 }
@@ -54,5 +54,68 @@ void Chassis::pivotOnRight(int deg){
 
 }
 */
+
+void Chassis::preloadTriball(){
+    remyRaven -> moveDistance(36_in);
+    remyRaven -> moveDistance(-18_in);
+}
+void Chassis::dualTriball(){
+    intake.takeIn();
+    remyRaven -> moveDistance(20_in);//19.8
+    remyRaven -> moveDistance(-20_in);
+    remyRaven -> turnAngle(-57_deg);
+    remyRaven -> moveDistance(34_in);//34.2
+    intake.takeOut();
+    pros::delay(500);
+    intake.dontEat();
+    remyRaven -> moveDistance(18_in);
+    remyRaven -> turnAngle(-97_deg);
+    intake.takeIn();
+    remyRaven -> moveDistance(32_in);//31.8
+    pros::delay(500);
+    remyRaven -> moveDistance(-11_in);//10.8
+    remyRaven -> turnAngle(125_deg);
+    remyRaven -> moveDistance(32_in);//31.8
+    intake.takeOut();
+    
+}
+void Chassis::fullWP(){
+    remyRaven -> moveDistance(20_in);//19.8
+    remyRaven -> moveDistance(-20_in);
+    remyRaven -> turnAngle(-57_deg);
+    remyRaven -> moveDistance(34_in);//34.2
+    intake.takeOut();
+    pros::delay(500);
+    intake.dontEat();
+    remyRaven -> moveDistance(-34_in);//34.2
+    remyRaven -> turnAngle(-123_deg);
+    remyRaven -> moveDistance(30_in);
+}
+void Chassis::loadingZone(){
+    intake.takeIn();
+    remyRaven -> moveDistance(20_in);//19.8
+    remyRaven -> moveDistance(-20_in);
+    intake.dontEat();
+}
+void Chassis::elevationPole(){
+    remyRaven -> moveDistance(-20_in);//-19.8
+    remyRaven -> turnAngle(15_deg);
+    remyRaven -> moveDistance(-10.2_in);//-10.2
+}
+void Chassis::skillsOne(){
+    bool serving = true;
+    int counter = 0;
+    while(serving){
+        catapult.autoServe();
+        counter++;
+        if(counter > 30000){
+            serving = false;
+        }
+    }
+    remyRaven -> setMaxVelocity(100);
+    remyRaven -> moveDistance(36_in);  
+    remyRaven -> setMaxVelocity(600); 
+      
+}
 
 Chassis chassis = Chassis();
