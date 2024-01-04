@@ -6,13 +6,13 @@ instantPot::instantPot():
 
     ptoSolenoid(PTO_PORT)
 {
-    ptoSolenoid.set_value(true);//engaged with chassis
+    ptoSolenoid.set_value(false);//engaged with chassis
 }
 void instantPot::ptoT(){
-    ptoSolenoid.set_value(true);//engaged with chassis
+    ptoSolenoid.set_value(false);//engaged with chassis
 }
 void instantPot::ptoF(){
-    ptoSolenoid.set_value(false);//engaged with lift
+    ptoSolenoid.set_value(true);//engaged with lift
 }
 
 void instantPot::create(){
