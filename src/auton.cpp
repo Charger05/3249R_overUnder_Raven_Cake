@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -11,31 +12,33 @@
  * from where it left off.
  */
 void autonomous() {
-    if(autonSet == 1){
+    chassis.build();
+    if(1 == 1){
         //preload into goal
         chassis.preloadTriball();
     }
-    else if(autonSet == 2){
+    else if(chassis.autonPotent.get_value() < 84){
         //dual triball
         chassis.dualTriball();
     }
-    else if(autonSet == 3){
+    else if(chassis.autonPotent.get_value() < 126){
         //Full WP
         chassis.fullWP();
     }
-    else if(autonSet == 4){
+    else if(chassis.autonPotent.get_value() < 168){
         //Loading zone only
         chassis.loadingZone();
     }
-    else if(autonSet == 5){
+    else if(chassis.autonPotent.get_value() < 210){
         //elevation pole only
         chassis.elevationPole();
     }
-    else if(autonSet == 6){
+    else if(chassis.autonPotent.get_value() < 250){
         //fire preloads then push them
         chassis.skillsOne();
     }
     else{
-        //
+        //preload into goal
+        chassis.preloadTriball();
     }
 }

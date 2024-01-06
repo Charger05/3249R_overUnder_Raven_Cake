@@ -46,6 +46,7 @@
 #define WINGS_PORT 'A'
 #define PTO_PORT 'B'
 #define CATA_BUTTON 'C'
+#define AUTON_SELECT 'D'
 
 #include "api.h"
 
@@ -78,7 +79,7 @@
  */
 // using namespace pros;
 // using namespace pros::literals;
-using namespace okapi;
+using namespace okapi::literals;
 
 /**
  * Prototypes for the competition control tasks are redefined here to ensure

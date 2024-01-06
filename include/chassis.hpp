@@ -14,6 +14,8 @@ class Chassis{
         okapi::Motor midRight;
         std::shared_ptr<okapi::ChassisController> remyRaven;
         std::shared_ptr<okapi::HDriveModel> whatDish;
+
+        pros::ADIAnalogIn autonPotent;
         
         Chassis();
         void build();//new

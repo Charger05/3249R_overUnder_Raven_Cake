@@ -8,7 +8,9 @@
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
+
 void competition_initialize() {
+    /*
     pros::lcd::initialize();
     pros::lcd::set_text(2, "Choose Program Category");
     pros::lcd::set_text(3, "Using Buttons");
@@ -18,7 +20,7 @@ void competition_initialize() {
     pros::lcd::register_btn0_cb(matchAuton);
     pros::lcd::register_btn1_cb(wpAuton);
     pros::lcd::register_btn2_cb(skillsAuton);
-    /*
+
     while(true){
         if(){
             
@@ -35,6 +37,7 @@ void competition_initialize() {
     }
     */
 }
+
 
 void matchAuton(){
     pros::lcd::set_text(2, "Choose Program");

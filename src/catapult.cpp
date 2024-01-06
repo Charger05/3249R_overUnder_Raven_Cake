@@ -22,7 +22,7 @@ void Catapult::autoServe()
 }
 void Catapult::manualServe()
 {
-    cataMtr.moveVoltage(6000);
+    cataMtr.moveVoltage(12000);
 }
 void Catapult::goBack()
 {
