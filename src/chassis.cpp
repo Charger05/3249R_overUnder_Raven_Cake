@@ -206,8 +206,8 @@ void Chassis::pivotOnRight(int deg) {
 }
 
 void Chassis::preloadTriball(){
-    traverse(36);
-    traverse(-18);
+    traverse(-84);
+    traverse(18);
 }
 void Chassis::dualTriball(){
     intake.takeIn();
@@ -299,12 +299,13 @@ void Chassis::elevationPole(){
 }
 
 void Chassis::skillsOne(){
+    traverse(3);
     bool serving = true;
     int counter = 0;
     while(serving){
         catapult.autoServe();
         counter++;
-        if(counter > 30000){
+        if(counter > 52){
             serving = false;
         }
     }
@@ -314,7 +315,7 @@ void Chassis::skillsOne(){
     remyRaven -> setMaxVelocity(600); 
     */
     remyRaven -> setMaxVelocity(100);
-    traverse(36);
+    traverse(-120);
     remyRaven -> setMaxVelocity(600); 
       
 }

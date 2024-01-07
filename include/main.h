@@ -46,7 +46,7 @@
 #define WINGS_PORT 'A'
 #define PTO_PORT 'B'
 #define CATA_BUTTON 'C'
-#define AUTON_SELECT 'D'
+#define AUTON_SELECT 4
 
 #include "api.h"
 
@@ -56,7 +56,7 @@
 #include "okapi/api.hpp"
 //#include "pros/api_legacy.h"
 
-#include "auton.hpp"
+//#include "auton.hpp"
 #include "catapult.hpp"
 #include "chassis.hpp"
 //#include "formAlgor.hpp"
@@ -91,6 +91,7 @@ extern "C" {
 #endif
 void initialize(void);
 void disabled(void);
+void autonomous(void);
 void opcontrol(void);
 #ifdef __cplusplus
 }

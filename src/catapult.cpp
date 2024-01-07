@@ -7,9 +7,9 @@ Catapult::Catapult():
 void Catapult::autoServe()
 {
     cataMtr.tarePosition();
-    cataMtr.moveRelative(900, 200);
+    cataMtr.moveRelative(850, 200);
     int delay = 0;
-    while (!((cataMtr.getPosition() < 905) && (cataMtr.getPosition() > 895)))
+    while (!((cataMtr.getPosition() < 855) && (cataMtr.getPosition() > 850)))
     {
         pros::delay(2);
         delay++;

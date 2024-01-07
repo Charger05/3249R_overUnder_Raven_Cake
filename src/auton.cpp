@@ -1,5 +1,6 @@
-#include "main.h"
-
+/*#include "main.h"
+#include "pros/colors.h"
+*/
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -11,8 +12,10 @@
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
+ /*
 void autonomous() {
-    chassis.build();
+     pros::lcd::set_background_color(COLOR_RED);
+     pros::lcd::set_text(1, "Autonomous Period");
     if(1 == 1){
         //preload into goal
         chassis.preloadTriball();
@@ -42,3 +45,4 @@ void autonomous() {
         chassis.preloadTriball();
     }
 }
+*/
