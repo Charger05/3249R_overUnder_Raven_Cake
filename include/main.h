@@ -55,17 +55,18 @@
  */
 #include "okapi/api.hpp"
 //#include "pros/api_legacy.h"
+#include "pros/apix.h"
 
-//#include "auton.hpp"
+#include "auton.hpp"
 #include "catapult.hpp"
 #include "chassis.hpp"
 //#include "formAlgor.hpp"
+#include "initalization.hpp"
 #include "intake.hpp"
-#include "preAuton.hpp"
 #include "variables.hpp"
 #include "wings.hpp"
 #include "pto.hpp"
-//#include "init.hpp"
+
 
 
 
@@ -89,9 +90,6 @@ using namespace okapi::literals;
 #ifdef __cplusplus
 extern "C" {
 #endif
-void initialize(void);
-void disabled(void);
-void autonomous(void);
 void opcontrol(void);
 #ifdef __cplusplus
 }

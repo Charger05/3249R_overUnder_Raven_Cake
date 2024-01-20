@@ -1,6 +1,5 @@
-/*#include "main.h"
+#include "main.h"
 #include "pros/colors.h"
-*/
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -12,37 +11,39 @@
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
- /*
 void autonomous() {
-     pros::lcd::set_background_color(COLOR_RED);
      pros::lcd::set_text(1, "Autonomous Period");
-    if(1 == 1){
+	 pros::lcd::set_text(2, std::to_string(chassis.autonPotent.get_value()));
+    
+	if(chassis.autonPotent.get_value() < 683){
         //preload into goal
         chassis.preloadTriball();
     }
-    else if(chassis.autonPotent.get_value() < 84){
+    else if(chassis.autonPotent.get_value() < 1365){
         //dual triball
         chassis.dualTriball();
     }
-    else if(chassis.autonPotent.get_value() < 126){
+    else if(chassis.autonPotent.get_value() < 2048){
         //Full WP
         chassis.fullWP();
     }
-    else if(chassis.autonPotent.get_value() < 168){
+    else if(chassis.autonPotent.get_value() < 2731){
         //Loading zone only
         chassis.loadingZone();
     }
-    else if(chassis.autonPotent.get_value() < 210){
+    else if(chassis.autonPotent.get_value() < 3414){
         //elevation pole only
         chassis.elevationPole();
     }
-    else if(chassis.autonPotent.get_value() < 250){
+    else if(chassis.autonPotent.get_value() < 4095){
         //fire preloads then push them
+		
         chassis.skillsOne();
+		
     }
     else{
         //preload into goal
         chassis.preloadTriball();
     }
+	
 }
-*/
