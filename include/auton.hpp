@@ -4,7 +4,7 @@
 
 #include "main.h"
 
-void autonomous(void);
+void autonomous();
 
 
 #endif //_AUTON_HPP_
