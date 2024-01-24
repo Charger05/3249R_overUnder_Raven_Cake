@@ -1,5 +1,4 @@
 #include "main.h"
-#include "okapi/api/chassis/model/skidSteerModel.hpp"
 
 instantPot::instantPot():
     ptoLeft(PTO_LEFT_MOTOR_PORT, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::rotations),
@@ -21,9 +20,8 @@ void instantPot::create(){
     alfredo = okapi::ChassisControllerBuilder()
     .withMotors(ptoLeft, ptoRight)
     .withDimensions(okapi::AbstractMotor::gearset::green, {{4_in, 4_in}, okapi::imev5GreenTPR})
-    .notParentedToCurrentTask()
     .build();
-    //helper = std::dynamic_pointer_cast<okapi::SkidSteerModel>(alfredo -> getModel());
+    helper = std::dynamic_pointer_cast<okapi::HDriveModel>(alfredo -> getModel());
 }
 
 

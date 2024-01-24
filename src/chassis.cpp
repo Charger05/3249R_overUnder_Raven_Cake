@@ -1,5 +1,4 @@
 #include "main.h"
-#include "okapi/api/chassis/model/skidSteerModel.hpp"
 
 Chassis::Chassis():
     rearLeft(REAR_LEFT_MOTOR_PORT, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::rotations),
@@ -15,12 +14,11 @@ void Chassis::build(){
     remyRaven = okapi::ChassisControllerBuilder()
     .withMotors({rearLeft, midLeft}, {rearRight, midRight})
     .withDimensions(okapi::AbstractMotor::gearset::green, {{4_in, 13_in}, okapi::imev5GreenTPR})
-    .notParentedToCurrentTask()
     .build();
-    //whatDish = std::dynamic_pointer_cast<okapi::SkidSteerModel>(remyRaven -> getModel());
+    whatDish = std::dynamic_pointer_cast<okapi::HDriveModel>(remyRaven -> getModel());
 }
 void Chassis::whiskRaw(double pwr, double turn){
-    remyRaven-> getModel() -> arcade(pwr, turn);
+    remyRaven -> getModel()->arcade(pwr, turn);
 }
 void Chassis::resetEncoders(){
     rearLeft.tarePosition();
