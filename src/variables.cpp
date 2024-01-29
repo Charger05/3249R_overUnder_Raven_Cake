@@ -8,8 +8,10 @@ double circumTurn = 2*nPi*13;
 bool cataAdj = false;
 bool ptoS = true;
 bool wingS = false;
+bool ptoHelp = false;
 
 int autonSet = 0;
+int autonDial = 0;
 
 okapi::Controller chef(okapi::ControllerId::master);
 okapi::ControllerButton chefA(okapi::ControllerId::master, okapi::ControllerDigital::A);

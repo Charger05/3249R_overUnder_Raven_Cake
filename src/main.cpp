@@ -11,88 +11,100 @@
  */
 
 void competition_initialize() {
-    pros::lcd::initialize();
-    pros::lcd::set_text(2, "Choose Program Category");
-    pros::lcd::set_text(3, "Using Buttons");
-    pros::lcd::set_text(4, "1: Match");
-    pros::lcd::set_text(5, "2: WP");
-    pros::lcd::set_text(5, "3: Skills");
-    pros::lcd::register_btn0_cb(matchAuton);
-    pros::lcd::register_btn1_cb(wpAuton);
-    pros::lcd::register_btn2_cb(skillsAuton);
-    /*
-    while(true){
-        if(){
-            
-        }
-        else if(){
+	pros::lcd::clear();
+	//pros::lcd::set_text(7, std::to_string(autonDial));
+	pros::lcd::initialize();
+    pros::lcd::set_text(1, "Choose Program Category w/ Buttons");
+    pros::lcd::set_text(2, "1: Match");
+    pros::lcd::set_text(3, "2: WP");
+    pros::lcd::set_text(4, "3: Skills");
+    if(autonDial == 0){
+		pros::lcd::register_btn0_cb(matchAuton);
+    	pros::lcd::register_btn1_cb(wpAuton);
+    	pros::lcd::register_btn2_cb(skillsAuton);
+	}
 
-        }
-        else if(){
 
-        }
-        else{
-            break;
-        }
-    }
-    */
 }
 
 
 void matchAuton(){
-    pros::lcd::set_text(2, "Choose Program");
-    pros::lcd::set_text(3, "Using Buttons");
-    pros::lcd::set_text(4, "1: Preload into triball");
-    pros::lcd::set_text(5, "2: Dual triball");
-    pros::lcd::set_text(5, "3: (None here)");
-    pros::lcd::register_btn0_cb(preloadTriball);
-    pros::lcd::register_btn1_cb(dualTriball);
-
+	autonDial = 1;
+	//pros::lcd::set_text(7, std::to_string(autonDial));	
+	pros::lcd::set_text(1, "Choose Program Using Buttons");
+    pros::lcd::set_text(2, "1: Preload into triball");
+    pros::lcd::set_text(3, "2: Dual triball");
+    pros::lcd::set_text(4, "3: (None here)");
+    if(autonDial == 1){
+		pros::lcd::register_btn0_cb(preloadTriball);
+		pros::lcd::register_btn1_cb(dualTriball);
+		pros::lcd::register_btn2_cb(invalidInput);
+	}
 }
 
 void wpAuton(){
-    pros::lcd::set_text(2, "Choose Program");
-    pros::lcd::set_text(3, "Using Buttons");
-    pros::lcd::set_text(4, "1: Full WP");
-    pros::lcd::set_text(5, "2: Loading Zone Only");
-    pros::lcd::set_text(5, "3: Elevation Pole Only");
-    pros::lcd::register_btn0_cb(fullWP);
-    pros::lcd::register_btn1_cb(loadingZone);
-    pros::lcd::register_btn2_cb(elevationPole);
+	autonDial = 2;
+	//pros::lcd::set_text(7, std::to_string(autonDial));
+	pros::lcd::set_text(1, "Choose Program Using Buttons");
+    pros::lcd::set_text(2, "1: Full WP");
+    pros::lcd::set_text(3, "2: Loading Zone Only");
+    pros::lcd::set_text(4, "3: Elevation Pole Only");
+    if(autonDial == 2){
+		pros::lcd::register_btn0_cb(fullWP);
+		pros::lcd::register_btn1_cb(loadingZone);
+		pros::lcd::register_btn2_cb(elevationPole);
+	}
+
 }
 
 void skillsAuton(){
-    pros::lcd::set_text(2, "Choose Program");
-    pros::lcd::set_text(3, "Using Buttons");
-    pros::lcd::set_text(4, "1: Fire preloads then push them");
-    pros::lcd::set_text(5, "2: (None here)");
-    pros::lcd::set_text(5, "3: (None here)");
-    pros::lcd::register_btn0_cb(skillsOne);
+	autonDial = 3;
+    //pros::lcd::set_text(7, std::to_string(autonDial));
+	pros::lcd::set_text(1, "Choose Program Using Buttons");
+    pros::lcd::set_text(2, "1: Fire preloads then push them");
+    pros::lcd::set_text(3, "2: (None here)");
+    pros::lcd::set_text(4, "3: (None here)");
+    if(autonDial == 3){
+		pros::lcd::register_btn0_cb(skillsOne);
+		pros::lcd::register_btn1_cb(invalidInput);
+		pros::lcd::register_btn2_cb(invalidInput);
+	}
+
 
 }
 
 void preloadTriball(){
-    autonSet = 1;
+    pros::lcd::set_text(6, "Single Preload Selected");
+	autonSet = 1;
 }
 
 void dualTriball(){
-    autonSet = 2;
+    pros::lcd::set_text(6, "Dual Preload Selected");
+	autonSet = 2;
 }
 
 void fullWP(){
-    autonSet = 3;
+    pros::lcd::set_text(6, "Full WP Selected");
+	autonSet = 3;
 }
 
 void loadingZone(){
-    autonSet = 4;
+    pros::lcd::set_text(6, "Loading Zone Selected");
+	autonSet = 4;
 }
 
 void elevationPole(){
-    autonSet = 5;
+    pros::lcd::set_text(6, "Elevation Pole Selected");
+	autonSet = 5;
 }
 
 void skillsOne(){
-    autonSet = 6;
+    pros::lcd::set_text(6, "Skills Selected");
+	autonSet = 6;
+}
+
+void invalidInput(){
+	pros::lcd::set_text(6, "Invalid Input");
 }
 
 /**
@@ -103,7 +115,7 @@ void skillsOne(){
  */
 void initialize() {
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Program Initalized");
+	pros::lcd::set_text(0, "Program Initalized");
 	chassis.build();
 	spork.create();
 }
@@ -119,30 +131,30 @@ void initialize() {
  * from where it left off.
  */
 void autonomous() {
-     pros::lcd::set_text(1, "Autonomous Period");
-	 pros::lcd::set_text(2, std::to_string(chassis.autonPotent.get_value()));
-    
-	if(chassis.autonPotent.get_value() < 683){
+     pros::lcd::clear();
+	 pros::lcd::set_text(0, "Autonomous Period");
+
+	if(autonSet == 1){
         //preload into goal
         chassis.preloadTriball();
     }
-    else if(chassis.autonPotent.get_value() < 1365){
+    else if(autonSet == 2){
         //dual triball
         chassis.dualTriball();
     }
-    else if(chassis.autonPotent.get_value() < 2048){
+    else if(autonSet == 3){
         //Full WP
         chassis.fullWP();
     }
-    else if(chassis.autonPotent.get_value() < 2731){
+    else if(autonSet == 4){
         //Loading zone only
         chassis.loadingZone();
     }
-    else if(chassis.autonPotent.get_value() < 3414){
+    else if(autonSet == 5){
         //elevation pole only
         chassis.elevationPole();
     }
-    else if(chassis.autonPotent.get_value() < 4095){
+    else if(autonSet == 6){
         //fire preloads then push them
 		
         chassis.skillsOne();
@@ -152,6 +164,7 @@ void autonomous() {
         //preload into goal
         chassis.preloadTriball();
     }
+	
 	
 }
 
@@ -169,19 +182,21 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	pros::lcd::set_text(1, "Drive Period");
+	pros::lcd::clear();
+	pros::lcd::set_text(0, "Drive Period");
 	while (true) {
 		//Chassis drive
-		chassis.whiskRaw(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
+		if(!ptoHelp){
+			chassis.whiskRaw(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
 		
-		//PTO 
-		if(ptoS){
-			spork.driveChassis(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
-		}
-		else{
-			spork.driveLift();
-		}
-		
+			//PTO 
+			if(ptoS){
+				spork.driveChassis(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
+			}
+			else{
+				spork.driveLift();
+			}
+		}		
 		
 		//Intake
 		if(chefR1.isPressed()){

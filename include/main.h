@@ -90,8 +90,6 @@ using namespace okapi::literals;
 extern "C" {
 #endif
 
-void competition_initialize(void);
-
 void matchAuton();
 void wpAuton();
 void skillsAuton();
@@ -102,11 +100,14 @@ void fullWP();
 void loadingZone();
 void elevationPole();
 void skillsOne();
+void invalidInput();
 
 void initialize(void);
-void disabled(void);
+void competition_initialize(void);
 void autonomous(void);
 void opcontrol(void);
+void disabled(void);
+
 #ifdef __cplusplus
 }
 #endif

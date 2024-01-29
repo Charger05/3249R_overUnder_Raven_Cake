@@ -23,12 +23,13 @@ class Chassis{
         void resetEncoders();
         void brakeOn();
         void brakeOff();
+        void ptoAid();
         
         void stopMove();
         void traverse(int in);
         void rotate(int deg);
         void pivotOnRight(int deg);
-
+        
         void preloadTriball();
         void dualTriball();
         void fullWP();

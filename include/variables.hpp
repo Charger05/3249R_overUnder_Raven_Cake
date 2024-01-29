@@ -12,8 +12,10 @@ extern double circumTurn;//Circumference of turning circle
 extern bool cataAdj;//Catapult setting
 extern bool ptoS;//PTO setting
 extern bool wingS;//Wing Setting
+extern bool ptoHelp;//PTO help setting
 
 extern int autonSet;//Autonomous Setting
+extern int autonDial;//Autonomous screen
 
 extern okapi::Controller chef;
 extern okapi::ControllerButton chefR1;
