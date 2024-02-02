@@ -23,6 +23,10 @@ class instantPot{
         void driveChassis(float pwr, float turn);
         void create();//new
         void driveLift();
+        void up();
+        void down();
+        void stop();
+        void ptoAid();
         void brakeOn();
         void brakeOff();
 };

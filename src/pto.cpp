@@ -42,18 +42,58 @@ void instantPot::brakeOff(){
     ptoRight.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
 }
 
+void instantPot::up(){
+    ptoLeft.moveVoltage(12000);
+    ptoRight.moveVoltage(12000);
+}
+
+void instantPot::down(){
+    ptoLeft.moveVoltage(-12000);
+    ptoRight.moveVoltage(-12000);
+}
+
+void instantPot::stop(){
+    ptoLeft.moveVoltage(0);
+    ptoRight.moveVoltage(0);
+}
+
+void instantPot::ptoAid(){
+  for(int i = 0; i < 10; i++){
+    if(chef.getAnalog(okapi::ControllerAnalog::leftY) > 0.02 || chef.getAnalog(okapi::ControllerAnalog::rightX) > 0.02 || chef.getAnalog(okapi::ControllerAnalog::leftY) < -0.02 || chef.getAnalog(okapi::ControllerAnalog::rightX) < -0.02){
+      brakeOff();
+
+      driveChassis(chef.getAnalog(okapi::ControllerAnalog::leftY), chef.getAnalog(okapi::ControllerAnalog::rightX));
+      pros::delay(100);
+      ptoHelp = true;
+      driveChassis(-chef.getAnalog(okapi::ControllerAnalog::leftY), -chef.getAnalog(okapi::ControllerAnalog::rightX));
+      brakeOn(); 
+      ptoHelp = false;
+      pros::delay(50);   
+    }
+    else {
+      brakeOff();
+      ptoHelp = true;
+      up();
+      pros::delay(50);
+      ptoHelp = false;
+      down();
+      brakeOn();
+      pros::delay(50);
+  }
+  }
+  brakeOff();
+  stop();
+}
+
 void instantPot::driveLift(){
     if(chefUp.isPressed()){
-        ptoLeft.moveVoltage(12000);
-        ptoRight.moveVoltage(12000);
+        up();
     }
     else if(chefDown.isPressed()){
-        ptoLeft.moveVoltage(-12000);
-        ptoRight.moveVoltage(-12000);
+        down();
     }
     else{
-        ptoLeft.moveVoltage(0);
-        ptoRight.moveVoltage(0);
+        stop();
     }
 }
 

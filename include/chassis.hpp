@@ -23,7 +23,6 @@ class Chassis{
         void resetEncoders();
         void brakeOn();
         void brakeOff();
-        void ptoAid();
         
         void stopMove();
         void traverse(int in);

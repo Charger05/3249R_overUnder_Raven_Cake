@@ -132,8 +132,8 @@ void initialize() {
  * from where it left off.
  */
 void autonomous() {
-     pros::lcd::clear();
-	 pros::lcd::set_text(0, "Autonomous Period");
+    pros::lcd::clear();
+	pros::lcd::set_text(0, "Autonomous Period");
 
 	if(autonSet == 1){
         //preload into goal
@@ -187,9 +187,8 @@ void opcontrol() {
 	pros::lcd::set_text(0, "Drive Period");
 	while (true) {
 		//Chassis drive
-		if(!ptoHelp){
-			chassis.whiskRaw(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
-		
+		chassis.whiskRaw(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
+		if(!ptoHelp){		
 			//PTO 
 			if(ptoS){
 				spork.driveChassis(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
@@ -276,7 +275,7 @@ void opcontrol() {
 		}
 		//PTO Helper
 		if(chefY.isPressed()){
-			chassis.ptoAid();
+			spork.ptoAid();
 		}
 		
 		pros::delay(10);

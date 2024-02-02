@@ -44,36 +44,7 @@ void Chassis::brakeOff(){
     midRight.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
 }
 
-void Chassis::ptoAid(){
-  for(int i = 0; i < 10; i++){
-    if(chef.getAnalog(okapi::ControllerAnalog::leftY) > 2 || chef.getAnalog(okapi::ControllerAnalog::rightX) > 2){
-      brakeOff();
-      ptoHelp = true;
-      pros::delay(100);
-      ptoHelp = false;
-      rearLeft.moveVoltage(0);
-      midLeft.moveVoltage(0);
-      rearRight.moveVoltage(0);
-      midRight.moveVoltage(0);
-      brakeOn();    
-    }
-    else {
-      brakeOff();
-      ptoHelp = true;
-      rearLeft.moveVoltage(12000);
-      midLeft.moveVoltage(12000);
-      rearRight.moveVoltage(12000);
-      midRight.moveVoltage(12000);
-      pros::delay(100);
-      ptoHelp = false;
-      rearLeft.moveVoltage(0);
-      midLeft.moveVoltage(0);
-      rearRight.moveVoltage(0);
-      midRight.moveVoltage(0);
-      brakeOn();
-  }
-  }
-}
+
 
 void Chassis::traverse(int in) {
 
