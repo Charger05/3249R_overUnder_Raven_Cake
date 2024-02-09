@@ -192,9 +192,11 @@ void opcontrol() {
 			//PTO 
 			if(ptoS){
 				spork.driveChassis(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
+				spork.brakeOff();
 			}
 			else{
 				spork.driveLift();
+				spork.brakeOn();
 			}
 		}		
 		
@@ -262,7 +264,6 @@ void opcontrol() {
 			if(!ptoS){
 				ptoS = true;//chassis
 				spork.ptoT();
-
 			}
 			else{
 				ptoS = false;//lift

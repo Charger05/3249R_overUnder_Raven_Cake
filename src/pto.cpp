@@ -33,8 +33,8 @@ void instantPot::driveChassis(float pwr, float turn){
     alfredo -> getModel() -> arcade(pwr, turn);
 }
 void instantPot::brakeOn(){
-    ptoLeft.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-    ptoRight.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+    ptoLeft.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    ptoRight.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 
 }
 void instantPot::brakeOff(){
@@ -43,13 +43,13 @@ void instantPot::brakeOff(){
 }
 
 void instantPot::up(){
-    ptoLeft.moveVoltage(12000);
-    ptoRight.moveVoltage(12000);
+    ptoLeft.moveVoltage(8000);
+    ptoRight.moveVoltage(8000);
 }
 
 void instantPot::down(){
-    ptoLeft.moveVoltage(-12000);
-    ptoRight.moveVoltage(-12000);
+    ptoLeft.moveVoltage(-8000);
+    ptoRight.moveVoltage(-8000);
 }
 
 void instantPot::stop(){
