@@ -33,7 +33,7 @@ class Chassis{
         void dualTriball();
         void fullWP();
         void loadingZone();
-        void elevationPole();
+        void elevationPole(int m);
         void skillsOne();
 };
 

@@ -88,11 +88,12 @@ void Chassis::fullWP(){
     intake.dontEat();
 
     remyRaven -> moveDistance(-34_in);//34.2
-    remyRaven -> turnAngle(-123_deg);
-    remyRaven -> moveDistance(30_in);
+    elevationPole(1);
 
 }
 void Chassis::loadingZone(){
+    intake.takeOut();
+    pros::delay(500);
     intake.takeIn();
 
     remyRaven -> moveDistance(20_in);//19.8
@@ -100,11 +101,18 @@ void Chassis::loadingZone(){
 
     intake.dontEat();
 }
-void Chassis::elevationPole(){
-
-    remyRaven -> moveDistance(-20_in);//-19.8
-    remyRaven -> turnAngle(15_deg);
-    remyRaven -> moveDistance(-10.2_in);//-10.2
+void Chassis::elevationPole(int m){
+    if(m == 0){
+        remyRaven -> turnAngle(185_deg);
+ 
+    }
+    else{
+         remyRaven -> turnAngle(135_deg);
+    }
+    remyRaven -> moveDistance(25_in); 
+    remyRaven -> setMaxVelocity(20);
+    remyRaven -> moveDistance(5_in);
+    remyRaven -> setMaxVelocity(600); 
 
 }
 

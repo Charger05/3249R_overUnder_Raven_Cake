@@ -153,7 +153,7 @@ void autonomous() {
     }
     else if(autonSet == 5){
         //elevation pole only
-        chassis.elevationPole();
+        chassis.elevationPole(0);
     }
     else if(autonSet == 6){
         //fire preloads then push them
