@@ -46,7 +46,10 @@
 #define WINGS_PORT 'A'
 #define PTO_PORT 'B'
 #define CATA_BUTTON 'C'
-#define AUTON_SELECT 4
+#define LIFT_POTENT 4
+#define PTO_SW_LEFT 'E'
+#define PTO_SW_RIGHT 'F'
+
 
 #include "api.h"
 

@@ -4,15 +4,22 @@ instantPot::instantPot():
     ptoLeft(PTO_LEFT_MOTOR_PORT, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::rotations),
     ptoRight(PTO_RIGHT_MOTOR_PORT, true, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::rotations),
 
-    ptoSolenoid(PTO_PORT)
+    ptoSolenoid(PTO_PORT),
+    liftPotent(LIFT_POTENT),
+    ptoSwLeft(PTO_SW_LEFT),
+    ptoSwRight(PTO_SW_RIGHT)
 {
     ptoSolenoid.set_value(false);//engaged with chassis
 }
 void instantPot::ptoT(){
     ptoSolenoid.set_value(false);//engaged with chassis
+    ptoAid();
 }
 void instantPot::ptoF(){
     ptoSolenoid.set_value(true);//engaged with lift
+    while(ptoSwLeft.get_value() == 0 || ptoSwRight.get_value() == 0){
+        ptoAid();
+    }
 }
 
 void instantPot::create(){
@@ -68,7 +75,7 @@ void instantPot::ptoAid(){
       driveChassis(-chef.getAnalog(okapi::ControllerAnalog::leftY), -chef.getAnalog(okapi::ControllerAnalog::rightX));
       brakeOn(); 
       ptoHelp = false;
-      pros::delay(50);   
+      pros::delay(10);   
     }
     else {
       brakeOff();
