@@ -1,4 +1,5 @@
 #include "main.h"
+#include "variables.hpp"
 
 instantPot::instantPot():
     ptoLeft(PTO_LEFT_MOTOR_PORT, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::rotations),
@@ -13,13 +14,20 @@ instantPot::instantPot():
 }
 void instantPot::ptoT(){
     ptoSolenoid.set_value(false);//engaged with chassis
-    ptoAid();
+    //ptoAid(10);
 }
 void instantPot::ptoF(){
     ptoSolenoid.set_value(true);//engaged with lift
+    /*ptoAid(10);
     while(ptoSwLeft.get_value() == 0 || ptoSwRight.get_value() == 0){
-        ptoAid();
+        if(chefB.isPressed()){
+            break;
+        }
+        ptoAid(1);
     }
+    chef.rumble(".-");
+    */
+
 }
 
 void instantPot::create(){
@@ -64,8 +72,8 @@ void instantPot::stop(){
     ptoRight.moveVoltage(0);
 }
 
-void instantPot::ptoAid(){
-  for(int i = 0; i < 10; i++){
+void instantPot::ptoAid(int rep){
+  for(int i = 0; i < rep; i++){
     if(chef.getAnalog(okapi::ControllerAnalog::leftY) > 0.02 || chef.getAnalog(okapi::ControllerAnalog::rightX) > 0.02 || chef.getAnalog(okapi::ControllerAnalog::leftY) < -0.02 || chef.getAnalog(okapi::ControllerAnalog::rightX) < -0.02){
       brakeOff();
 
@@ -92,11 +100,13 @@ void instantPot::ptoAid(){
   stop();
 }
 
+
 void instantPot::driveLift(){
-    if(chefUp.isPressed()){
+    if(chefUp.isPressed() || (liftUp && liftPotent.get_value() < 1042)){
         up();
     }
     else if(chefDown.isPressed()){
+        liftUp = false;
         down();
     }
     else{

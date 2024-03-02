@@ -13,6 +13,9 @@ extern bool cataAdj;//Catapult setting
 extern bool ptoS;//PTO setting
 extern bool wingS;//Wing Setting
 extern bool ptoHelp;//PTO help setting
+extern bool liftUp;// lift lift all the way up setting
+extern bool ptoOverride;// override sensors
+extern bool noti;
 
 extern int autonSet;//Autonomous Setting
 extern int autonDial;//Autonomous screen

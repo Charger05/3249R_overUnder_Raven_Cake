@@ -16,7 +16,7 @@ class instantPot{
         std::shared_ptr<okapi::HDriveModel> helper;
         
         pros::ADIDigitalOut ptoSolenoid;
-        
+
         pros::ADIAnalogIn liftPotent;
         pros::ADIDigitalIn ptoSwLeft;
         pros::ADIDigitalIn ptoSwRight;
@@ -30,7 +30,8 @@ class instantPot{
         void up();
         void down();
         void stop();
-        void ptoAid();
+
+        void ptoAid(int rep);
         void brakeOn();
         void brakeOff();
 };

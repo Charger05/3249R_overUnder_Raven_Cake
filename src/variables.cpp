@@ -9,6 +9,10 @@ bool cataAdj = false;
 bool ptoS = true;
 bool wingS = false;
 bool ptoHelp = false;
+bool ptoLift = false;
+bool liftUp = false;
+bool ptoOverride = false;
+bool noti = false;
 
 int autonSet = 0;
 int autonDial = 0;

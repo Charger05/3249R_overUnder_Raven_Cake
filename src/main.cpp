@@ -185,6 +185,7 @@ void autonomous() {
 void opcontrol() {
 	pros::lcd::clear();
 	pros::lcd::set_text(0, "Drive Period");
+
 	while (true) {
 		//Chassis drive
 		chassis.whiskRaw(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
@@ -223,6 +224,18 @@ void opcontrol() {
 			while(chefLeft.isPressed()){
 				pros::delay(2);
 			}
+		}
+		if(chefRight.isPressed()){
+			if(!liftUp){
+				liftUp = true;
+			}
+			else{
+				liftUp = false;
+				//tare position
+			}
+			while(chefRight.isPressed()){
+				pros::delay(2);
+			}			
 		}
 
 		//catapult auto/manual serve
@@ -264,6 +277,7 @@ void opcontrol() {
 			if(!ptoS){
 				ptoS = true;//chassis
 				spork.ptoT();
+				liftUp = false;
 			}
 			else{
 				ptoS = false;//lift
@@ -276,8 +290,20 @@ void opcontrol() {
 		}
 		//PTO Helper
 		if(chefY.isPressed()){
-			spork.ptoAid();
+			spork.ptoAid(10);
 		}
+		
+		if(spork.ptoSwLeft.get_value() == 1 && spork.ptoSwRight.get_value() == 1){
+			if(!noti){
+				noti = true;
+				chef.rumble(".-");
+			}
+			
+    	}
+		if(spork.ptoSwLeft.get_value() == 0 && spork.ptoSwRight.get_value() == 0){
+			noti = false;
+		}
+   	 	
 		
 		pros::delay(10);
 
