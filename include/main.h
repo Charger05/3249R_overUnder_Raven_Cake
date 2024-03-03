@@ -45,10 +45,14 @@
 
 #define WINGS_PORT 'A'
 #define PTO_PORT 'B'
-#define CATA_BUTTON 'C'
+#define BUMP_LED 'C'
 #define LIFT_POTENT 4
 #define PTO_SW_LEFT 'E'
 #define PTO_SW_RIGHT 'F'
+#define BUMP_LEFT 'G'
+#define BUMP_RIGHT 'H'
+
+
 
 
 #include "api.h"

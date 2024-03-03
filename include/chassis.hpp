@@ -14,6 +14,10 @@ class Chassis{
         okapi::Motor midRight;
         std::shared_ptr<okapi::ChassisController> remyRaven;
         std::shared_ptr<okapi::HDriveModel> whatDish;
+
+        pros::ADIDigitalIn bumpLeft;
+        pros::ADIDigitalIn bumpRight;
+        pros::ADIDigitalOut bumpLed;        
         
         Chassis();
         void build();//new

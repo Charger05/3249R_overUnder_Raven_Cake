@@ -184,8 +184,7 @@ void autonomous() {
  */
 void opcontrol() {
 	pros::lcd::clear();
-	pros::lcd::set_text(0, "Drive Period");
-
+	pros::lcd::set_text(0, "Drive Period");	
 	while (true) {
 		//Chassis drive
 		chassis.whiskRaw(chef.getAnalog(okapi::ControllerAnalog::leftY),chef.getAnalog(okapi::ControllerAnalog::rightX));
@@ -303,7 +302,13 @@ void opcontrol() {
 		if(spork.ptoSwLeft.get_value() == 0 && spork.ptoSwRight.get_value() == 0){
 			noti = false;
 		}
-   	 	
+
+		if(chassis.bumpLeft.get_value() == 1 || chassis.bumpRight.get_value() == 1){
+			chassis.bumpLed.set_value(0);			
+    	}  
+		else{
+			chassis.bumpLed.set_value(1);			
+		} 	 	
 		
 		pros::delay(10);
 
