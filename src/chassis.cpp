@@ -54,6 +54,7 @@ void Chassis::preloadTriball(){
 
 }
 void Chassis::dualTriball(){
+    /*
     loadingZone();
 
     intake.takeIn();
@@ -78,6 +79,29 @@ void Chassis::dualTriball(){
     remyRaven -> moveDistance(32_in);//31.8
 
     intake.takeOut();
+    */
+    //START WITH INTAKE STOWED
+    remyRaven -> moveDistance(18_in);//20.4
+    remyRaven -> moveDistance(-8_in);
+    remyRaven -> turnAngle(-70_deg);
+    
+    intake.takeOut();
+    pros::delay(500);
+    intake.takeIn();
+
+    remyRaven -> moveDistance(52_in);
+    pros::delay(500);
+    remyRaven -> moveDistance(-11_in);//-10.8
+    Wings.fry();
+    remyRaven -> turnAngle(115_deg);
+    
+    intake.takeOut();
+    remyRaven -> moveDistance(30_in);//-10.8
+    pros::delay(500);
+    intake.dontEat();
+    remyRaven -> moveDistance(-4_in);//-10.8
+
+    Wings.chill();
     
 }
 void Chassis::fullWP(){
