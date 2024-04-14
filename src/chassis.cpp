@@ -81,23 +81,23 @@ void Chassis::dualTriball(){
     intake.takeOut();
     */
     //START WITH INTAKE STOWED
-    remyRaven -> moveDistance(18_in);//20.4
-    remyRaven -> moveDistance(-8_in);
-    remyRaven -> turnAngle(-70_deg);
+    remyRaven -> moveDistance(20_in);//20.4
+    remyRaven -> moveDistance(-10_in);
+    remyRaven -> turnAngle(-68_deg);
     
     intake.takeOut();
-    pros::delay(500);
+    pros::delay(200);
     intake.takeIn();
 
-    remyRaven -> moveDistance(52_in);
-    pros::delay(500);
+    remyRaven -> moveDistance(50_in);
+    pros::delay(200);
     remyRaven -> moveDistance(-11_in);//-10.8
     Wings.fry();
-    remyRaven -> turnAngle(115_deg);
+    remyRaven -> turnAngle(117_deg);
     
     intake.takeOut();
-    remyRaven -> moveDistance(30_in);//-10.8
-    pros::delay(500);
+    remyRaven -> moveDistance(28_in);//-10.8
+    pros::delay(200);
     intake.dontEat();
     remyRaven -> moveDistance(-4_in);//-10.8
 
