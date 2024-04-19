@@ -2,7 +2,7 @@
 #include "okapi/api/device/motor/abstractMotor.hpp"
 
 Catapult::Catapult():
-    cataMtr(CATA_MOTOR_PORT, true, okapi::AbstractMotor::gearset::red, okapi::AbstractMotor::encoderUnits::rotations)
+    cataMtr(CATA_MOTOR_PORT, true, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::rotations)
 {}
 void Catapult::autoServe()
 {
@@ -26,7 +26,7 @@ void Catapult::manualServe()
 }
 void Catapult::goBack()
 {
-    cataMtr.moveVoltage(-6000);
+    cataMtr.moveVoltage(-12000);
 }
 
 void Catapult::stopIt()

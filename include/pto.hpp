@@ -29,6 +29,8 @@ class instantPot{
         void driveLift();
         void up();
         void down();
+        void climb();
+        void lower();
         void stop();
 
         void ptoAid(int rep);

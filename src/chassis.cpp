@@ -82,7 +82,7 @@ void Chassis::dualTriball(){
     */
     //START WITH INTAKE STOWED
     remyRaven -> moveDistance(20_in);//20.4
-    remyRaven -> moveDistance(-10_in);
+    remyRaven -> moveDistance(-9_in);
     remyRaven -> turnAngle(-68_deg);
     
     intake.takeOut();

@@ -211,19 +211,6 @@ void opcontrol() {
 			intake.dontEat();
 		}
 
-		//Catapult
-		if(chefLeft.isPressed()){
-			if(!cataAdj){
-				cataAdj = true;
-			}
-			else{
-				cataAdj = false;
-				//tare position
-			}
-			while(chefLeft.isPressed()){
-				pros::delay(2);
-			}
-		}
 		if(chefRight.isPressed()){
 			if(!liftUp){
 				liftUp = true;
@@ -239,17 +226,10 @@ void opcontrol() {
 
 		//catapult auto/manual serve
 		if(chefL1.isPressed()){
-			if(!cataAdj){
-				catapult.autoServe();
-			}
-			else{
-				catapult.manualServe();
-			}			
+			catapult.goBack();
 		}
 		else if(chefL2.isPressed()){
-			if(cataAdj){
-				catapult.goBack();
-			}
+			catapult.manualServe();
 		}
 		else{
 			catapult.stopIt();

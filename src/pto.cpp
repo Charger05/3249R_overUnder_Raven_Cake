@@ -58,13 +58,23 @@ void instantPot::brakeOff(){
 }
 
 void instantPot::up(){
-    ptoLeft.moveVoltage(8000);
-    ptoRight.moveVoltage(8000);
+    ptoLeft.moveVoltage(4000);
+    ptoRight.moveVoltage(4000);
 }
 
 void instantPot::down(){
-    ptoLeft.moveVoltage(-8000);
-    ptoRight.moveVoltage(-8000);
+    ptoLeft.moveVoltage(-4000);
+    ptoRight.moveVoltage(-4000);
+}
+
+void instantPot::lower(){
+    ptoLeft.moveVoltage(2000);
+    ptoRight.moveVoltage(2000);
+}
+
+void instantPot::climb(){
+    ptoLeft.moveVoltage(-2000);
+    ptoRight.moveVoltage(-2000);
 }
 
 void instantPot::stop(){
@@ -102,12 +112,28 @@ void instantPot::ptoAid(int rep){
 
 
 void instantPot::driveLift(){
-    if(chefUp.isPressed() || (liftUp && liftPotent.get_value() < 1042)){
-        up();
+    if(chefUp.isPressed() || (liftUp && liftPotent.get_value() < 1042) || chefL2.isPressed()){
+        if(chefUp.isPressed()){
+            up();
+        }
+        else if(chefL2.isPressed()){
+            //lower();
+        }
+        else{
+            up();
+        }               
     }
-    else if(chefDown.isPressed()){
+    else if(chefDown.isPressed() || chefL1.isPressed()){
         liftUp = false;
-        down();
+        if(chefDown.isPressed()){
+            down();
+        }
+        else if(chefL1.isPressed()){
+            //climb();
+        }
+        else{
+            down();
+        }
     }
     else{
         stop();
