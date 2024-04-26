@@ -27,8 +27,8 @@ class Chassis{
         void brakeOff();
         
         void stopMove();
-        void traverse(int in);
-        void rotate(int deg);
+        void traverse(okapi::QLength distance, int timeout);
+        void rotate(okapi::QAngle distance, int timeout);
         void pivotOnRight(int deg);
         
         void preloadTriball();

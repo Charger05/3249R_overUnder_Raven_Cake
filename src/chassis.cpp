@@ -47,43 +47,45 @@ void Chassis::brakeOff(){
     midRight.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
 }
 
+void Chassis::traverse(okapi::QLength distance, int timeout) {
+     remyRaven -> moveDistanceAsync(distance); // move to the target asynchronously (without waiting)
+     int tim = 0;
+     while(7 == 7) { // loop if not settled
+          tim++;
+          pros::delay(1);
+          if(tim >= timeout) { // if not settled and time has ran out
+               remyRaven -> stop();
+               break; // break the loop and continue with autonomous
+          }
+     }
+}
+
+void Chassis::rotate(okapi::QAngle angle, int timeout) {
+     remyRaven -> turnAngleAsync(angle); // move to the target asynchronously (without waiting)
+     int tim = 0;
+     while(7 == 7) { // loop if not settled
+          tim++;
+          pros::delay(1);
+          if(tim >= timeout) { // if not settled and time has ran out
+               remyRaven -> stop();
+               break; // break the loop and continue with autonomous
+          }
+     }
+}
+
 
 void Chassis::preloadTriball(){
-    remyRaven -> moveDistance(36_in);
-    remyRaven -> moveDistance(-18_in);
-
+    traverse(30_in, 1200);
+    traverse(-18_in, 1000);
+    pros::lcd::set_text(1, "autonomous program complete");
 }
+
 void Chassis::dualTriball(){
-    /*
-    loadingZone();
 
-    intake.takeIn();
-    remyRaven -> turnAngle(-57_deg);
-    remyRaven -> moveDistance(34_in);//34.2
-
-    intake.takeOut();
-    pros::delay(500);
-    intake.dontEat();
-  
-    remyRaven -> moveDistance(18_in);
-    remyRaven -> turnAngle(-97_deg);
-
-    intake.takeIn();
-
-    remyRaven -> moveDistance(32_in);//31.8
-
-    pros::delay(500);
-
-    remyRaven -> moveDistance(-11_in);//10.8
-    remyRaven -> turnAngle(125_deg);
-    remyRaven -> moveDistance(32_in);//31.8
-
-    intake.takeOut();
-    */
     //START WITH INTAKE STOWED
     remyRaven -> moveDistance(20_in);//20.4
-    remyRaven -> moveDistance(-9_in);
-    remyRaven -> turnAngle(-68_deg);
+    remyRaven -> moveDistance(-8_in);
+    remyRaven -> turnAngle(-69_deg);
     
     intake.takeOut();
     pros::delay(200);
