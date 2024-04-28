@@ -58,13 +58,13 @@ void instantPot::brakeOff(){
 }
 
 void instantPot::up(){
-    ptoLeft.moveVoltage(4000);
-    ptoRight.moveVoltage(4000);
+    ptoLeft.moveVoltage(8000);
+    ptoRight.moveVoltage(8000);
 }
 
 void instantPot::down(){
-    ptoLeft.moveVoltage(-4000);
-    ptoRight.moveVoltage(-4000);
+    ptoLeft.moveVoltage(-8000);
+    ptoRight.moveVoltage(-8000);
 }
 
 void instantPot::lower(){

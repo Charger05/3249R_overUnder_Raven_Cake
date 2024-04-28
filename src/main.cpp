@@ -75,8 +75,28 @@ void skillsAuton(){
 }
 
 void preloadTriball(){
-    pros::lcd::set_text(6, "Single Preload Selected");
+    autonDial = 4;
+	pros::lcd::set_text(1, "Choose Speed Using Buttons");
+    pros::lcd::set_text(2, "1: Normal");
+    pros::lcd::set_text(3, "2: Slow");
+    pros::lcd::set_text(4, "3: (None here)");
+    if(autonDial == 4){
+		pros::lcd::register_btn0_cb(fastSingle);
+		pros::lcd::register_btn1_cb(slowSingle);
+		pros::lcd::register_btn2_cb(invalidInput);
+	}
+
+
+}
+
+void fastSingle(){
+	pros::lcd::set_text(6, "Normal Speed Single Preload Selected");
 	autonSet = 1;
+}
+
+void slowSingle(){
+	pros::lcd::set_text(6, "Slow Speed Single Preload Selected");
+	autonSet = 7;
 }
 
 void dualTriball(){
@@ -137,7 +157,7 @@ void autonomous() {
 
 	if(autonSet == 1){
         //preload into goal
-        chassis.preloadTriball();
+        chassis.preloadTriball(0);
     }
     else if(autonSet == 2){
         //dual triball
@@ -157,13 +177,14 @@ void autonomous() {
     }
     else if(autonSet == 6){
         //fire preloads then push them
-		
-        chassis.skillsOne();
-		
+		chassis.skillsOne();
     }
+	else if(autonSet == 7){
+		chassis.preloadTriball(1);
+	}
     else{
         //preload into goal
-        chassis.preloadTriball();
+        chassis.preloadTriball(0);
     }
 	
 	

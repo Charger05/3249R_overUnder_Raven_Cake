@@ -100,8 +100,10 @@ extern "C" {
 void matchAuton();
 void wpAuton();
 void skillsAuton();
-
 void preloadTriball();
+
+void slowSingle();
+void fastSingle();
 void dualTriball();
 void fullWP();
 void loadingZone();

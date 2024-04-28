@@ -31,7 +31,7 @@ class Chassis{
         void rotate(okapi::QAngle distance, int timeout);
         void pivotOnRight(int deg);
         
-        void preloadTriball();
+        void preloadTriball(int n);
         void dualTriball();
         void fullWP();
         void loadingZone();

@@ -74,36 +74,48 @@ void Chassis::rotate(okapi::QAngle angle, int timeout) {
 }
 
 
-void Chassis::preloadTriball(){
-    traverse(30_in, 1200);
-    traverse(-18_in, 1000);
+void Chassis::preloadTriball(int n){
+    if(n == 1){
+        remyRaven -> setMaxVelocity(50);
+        traverse(36_in, 3000);
+        traverse(-18_in, 4000);
+    }
+    else{
+        
+        remyRaven -> setMaxVelocity(600);
+        traverse(36_in, 1200);
+        traverse(-18_in, 1000);
+    }
     pros::lcd::set_text(1, "autonomous program complete");
+    remyRaven -> setMaxVelocity(600);
 }
 
 void Chassis::dualTriball(){
 
     //START WITH INTAKE STOWED
-    remyRaven -> moveDistance(20_in);//20.4
-    remyRaven -> moveDistance(-8_in);
-    remyRaven -> turnAngle(-69_deg);
+    preloadTriball(0);
+    rotate(-45_deg, 1000);
+    //remyRaven -> turnAngle(-69_deg);
     
     intake.takeOut();
     pros::delay(200);
     intake.takeIn();
 
-    remyRaven -> moveDistance(50_in);
+    traverse(51_in, 3000);
     pros::delay(200);
-    remyRaven -> moveDistance(-11_in);//-10.8
+    traverse(-5_in, 1200);//10.8
+    rotate(120_deg, 1000);
     Wings.fry();
-    remyRaven -> turnAngle(117_deg);
+    //remyRaven -> turnAngle(117_deg);
     
     intake.takeOut();
-    remyRaven -> moveDistance(28_in);//-10.8
+    traverse( 28_in, 1200);//10.8
     pros::delay(200);
     intake.dontEat();
-    remyRaven -> moveDistance(-4_in);//-10.8
+    traverse(-4_in, 1200);
 
     Wings.chill();
+    pros::lcd::set_text(1, "autonomous program complete");
     
 }
 void Chassis::fullWP(){
